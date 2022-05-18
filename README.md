@@ -2,12 +2,12 @@
 Mytool is command line tool offer some pentest tools for local network, investigate website information and  scanning. This tool created dynacli package. You can use this tool for using dockerfile or upload dynamicli folder some linux distibution and install all requirement libraries which listed in requirements.txt.
 
 ## Local Command
-Local command for using run some function for local network \
-If you want see your ip in local network use : `./mytool local mine` \
-\
-![](https://i.postimg.cc/1RgyWgpv/screenshot-484.png) \ <br>
-\
-If you want see all ip's in local network, then use : `./mytool local devicelist <timeout> <iter-size>` \
+Local command for using run some function for local network <br>
+If you want see your ip in local network use : `./mytool local mine` <br>
+<br>
+![](https://i.postimg.cc/1RgyWgpv/screenshot-484.png) <br>
+<br>
+If you want see all ip's in local network, then use : `./mytool local devicelist <timeout> <iter-size>` <br>
 timeout value is waiting time to packet and iter-size is value of how many times send request <br><br>
 ![](https://i.postimg.cc/BvDxcZmb/screenshot-485.png) <br><br>
 If you want sniffing local network, then use : `./mytool local monitor <size>` <br>
