@@ -1,0 +1,8 @@
+dnspython
+python-whois
+scapy
+validators
+requests
+bs4
+dynacli
+pyfiglet
