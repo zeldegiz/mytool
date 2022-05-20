@@ -33,22 +33,26 @@ def devicelist(timeout: int,iter_size:int) -> None:
     
     Return: None
     '''
-    print(_figlet_format('Device Lister'))
-    ip_address = mine()
-    request = _ARP()
-    request.pdst = f'{ip_address}/24'
-    broadcast = _Ether()
-    broadcast.dst = 'ff:ff:ff:ff:ff:ff'
-    # Get ARP request iter_size time and collect information as nested list
-    clients_lists = [_srp(broadcast / request, timeout = timeout)[0] for i in range(iter_size)]
-    # Use Nested List comprehension for take parameters from requests
-    client_list = [(client[1].psrc,client[1].hwsrc) for lists in clients_lists for client in lists]
-    # Find unique Clients with set 
-    unique_clients = set(client_list)
-    print(f'Find {len(unique_clients)} clients in local network')
-    # Extract ip and mac address as string from clients
-    ip_mac_list = [f'{ip_add.center(20)}:{mac_add.center(20)}' for ip_add,mac_add in unique_clients]
-    print(*ip_mac_list,sep='\n')
+    try:
+        print(figlet_format('Device Lister'))
+        ip_address = mine()
+        request = ARP()
+        request.pdst = f'{ip_address}/24'
+        broadcast = Ether()
+        broadcast.dst = 'ff:ff:ff:ff:ff:ff'
+        # Get ARP request iter_size time and collect information as nested list
+        clients_lists = [srp(broadcast / request, timeout = timeout)[0] for i in range(iter_size)]
+        # Use Nested List comprehension for take parameters from requests
+        client_list = [(client[1].psrc,client[1].hwsrc) for lists in clients_lists for client in lists]
+        # Find unique Clients with set 
+        unique_clients = set(client_list)
+        print(f'Find {len(unique_clients)} clients in local network')
+        # Extract ip and mac address as string from clients
+        ip_mac_list = [f'{ip_add.center(20)}:{mac_add.center(20)}' for ip_add,mac_add in unique_clients]
+        print(*ip_mac_list,sep='\n')
+    except Exception as e:
+        print('Error Occurred')
+        print(e)
 
 def monitor(size:int) -> None:
     '''
